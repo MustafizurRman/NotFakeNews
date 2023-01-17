@@ -28,17 +28,18 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabMode"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/tabMode"
         android:layout_below="@id/toolBar"
-        app:tabTextColor="#618C8F"
-        app:tabSelectedTextColor="#2A022C"
+        android:layout_marginTop="0dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@string/app_name"
         app:tabIndicatorColor="#2A022C"
         app:tabIndicatorHeight="3.5dp"
         app:tabMode="scrollable"
-        android:layout_marginTop="0dp"
-        android:backgroundTint="@color/white"/>
+        app:tabSelectedTextColor="#2A022C"
+        app:tabTextColor="#618C8F" />
 
 <!--
         <androidx.viewpager2.widget.ViewPager2
@@ -46,11 +47,15 @@
             android:layout_height="match_parent"
             android:id="@+id/view_pager"/>-->
 
-<!--    <androidx.fragment.app.FragmentContainerView
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tabMode"
         android:layout_marginTop="0dp"
-        android:id="@+id/fragment_container"/>-->
+        app:navGraph="@navigation/nav_graph"
+        tools:layout="@layout/fragment_home" />
 
 </RelativeLayout>
