@@ -1,61 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="0dp"
-        android:background="#CCCCFF"
-        android:id="@+id/toolBar">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/notfakenews"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="#2A022C"/>
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabMode"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_below="@id/toolBar"
-        android:layout_marginTop="0dp"
-        android:backgroundTint="@color/white"
-        android:contentDescription="@string/app_name"
-        app:tabIndicatorColor="#2A022C"
-        app:tabIndicatorHeight="3.5dp"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#2A022C"
-        app:tabTextColor="#618C8F" />
-
-<!--
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/view_pager"/>-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabMode"
         android:layout_marginTop="0dp"
+        app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         tools:layout="@layout/fragment_home" />
 
-</RelativeLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
