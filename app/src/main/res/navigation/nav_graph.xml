@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
@@ -8,4 +9,40 @@
         android:id="@+id/homeFragment"
         android:name="com.fizz.notfakenews.fragments.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/technologyHomeFragment"
+        android:name="com.fizz.notfakenews.fragments.TechnologyHomeFragment"
+        android:label="Technology"
+        tools:layout="@layout/fragment_technology_home" />
+    <fragment
+        android:id="@+id/businessHomeFragment"
+        android:name="com.fizz.notfakenews.fragments.BusinessHomeFragment"
+        android:label="fragment_business_home"
+        tools:layout="@layout/fragment_business_home" />
+    <fragment
+        android:id="@+id/entertainmentHomeFragment"
+        android:name="com.fizz.notfakenews.fragments.EntertainmentHomeFragment"
+        android:label="fragment_entertainment_home"
+        tools:layout="@layout/fragment_entertainment_home" />
+    <fragment
+        android:id="@+id/generalHomeFragment"
+        android:name="com.fizz.notfakenews.fragments.GeneralHomeFragment"
+        android:label="fragment_general_home"
+        tools:layout="@layout/fragment_general_home" />
+    <fragment
+        android:id="@+id/healthHomeFragment"
+        android:name="com.fizz.notfakenews.fragments.HealthHomeFragment"
+        android:label="fragment_health_home"
+        tools:layout="@layout/fragment_health_home" />
+    <fragment
+        android:id="@+id/scienceHomeFragment"
+        android:name="com.fizz.notfakenews.fragments.ScienceHomeFragment"
+        android:label="fragment_science_home"
+        tools:layout="@layout/fragment_science_home" />
+    <fragment
+        android:id="@+id/sportsHomeFragment"
+        android:name="com.fizz.notfakenews.fragments.SportsHomeFragment"
+        android:label="fragment_sports_home"
+        tools:layout="@layout/fragment_sports_home" />
+
 </navigation>
