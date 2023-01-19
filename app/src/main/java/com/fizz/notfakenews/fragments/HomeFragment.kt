@@ -7,18 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.fizz.notfakenews.adapter.NotNewsAdapter
+import com.fizz.notfakenews.adapter.ViewPagerAdapter
 import com.fizz.notfakenews.databinding.FragmentHomeBinding
-import com.fizz.notfakenews.model.Article
 import com.fizz.notfakenews.overview.OverviewViewModel
+import com.google.android.material.tabs.TabLayoutMediator
+
+val TabArray = arrayOf(
+    "Technology",
+    "Entertainment",
+    "General",
+    "Health",
+    "Sports",
+    "Science",
+    "Business"
+)
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel:OverviewViewModel by viewModels()
+    private val viewModel: OverviewViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +38,21 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.refreshHome.setOnRefreshListener {
 
-        Log.d("list", viewModel.newsData.toString())
-        viewModel.newsData.observe(viewLifecycleOwner) {
-            binding.recyclerView.adapter =
-                NotNewsAdapter(requireContext(), viewModel, it as ArrayList<Article>)
+            binding.refreshHome.isRefreshing = false
         }
+        Log.d("HomeFragment","Currently I am in Home Fragmment")
+        val viewPager = binding.homeViewPager
+        val tabLayout = binding.tabMode
+
+        val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = TabArray[position]
+        }.attach()
+
     }
 
     override fun onDestroyView() {

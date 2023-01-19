@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fizz.notfakenews.R
@@ -31,11 +30,12 @@ class NotNewsAdapter(val context: Context,val viewModel: OverviewViewModel,val n
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+        Log.d("NoT News Adapter","Currently I am in not news adapter")
         val newsItem=newsList[position]
         holder.newsAuthor.text=newsItem.author
         holder.newsDetail.text=newsItem.description
         holder.newsTitle.text=newsItem.title
-        Glide.with(context).load(newsItem.urlToImage).into(holder.thumbnail);
+        Glide.with(context).load(newsItem.urlToImage).into(holder.thumbnail)
     }
 
     override fun getItemCount(): Int {
