@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fizz.notfakenews.adapter.NotNewsAdapter
 import com.fizz.notfakenews.databinding.FragmentBusinessHomeBinding
 import com.fizz.notfakenews.model.Article
+import com.fizz.notfakenews.model.ArticleLocal
 import com.fizz.notfakenews.overview.OverviewViewModel
 
 class BusinessHomeFragment : Fragment() {
@@ -35,7 +36,7 @@ class BusinessHomeFragment : Fragment() {
         viewModel.newsData.observe(viewLifecycleOwner){
             Log.d("BusinessHomeFragment","Currently I am in BusinessFragment and inside news data observer")
             binding.recyclerView.adapter=
-                NotNewsAdapter(requireContext(),viewModel,it as ArrayList<Article>)
+                NotNewsAdapter(requireContext(),viewModel,it as ArrayList<ArticleLocal>)
         }
     }
 

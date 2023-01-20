@@ -8,4 +8,21 @@ class ArticleRepository(private val articleDao: ArticleDao) {
     suspend fun addArticle(article:ArticleLocal){
         articleDao.insertArticle(article)
     }
+
+    suspend fun deleteArticle(article: ArticleLocal){
+        articleDao.deleteArticle(article)
+    }
+    suspend fun deleteAll(){
+        articleDao.deleteAll()
+    }
+
+    suspend fun updateBookmark(bookmark:Boolean,id:Int){
+        articleDao.updateBookmark(bookmark,id)
+    }
+
+
+    suspend fun updateArticle(article: ArticleLocal){
+        articleDao.updateArticle(article)
+    }
+
 }

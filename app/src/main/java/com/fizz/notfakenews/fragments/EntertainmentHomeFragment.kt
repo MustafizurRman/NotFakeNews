@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fizz.notfakenews.adapter.NotNewsAdapter
 import com.fizz.notfakenews.databinding.FragmentEntertainmentHomeBinding
 import com.fizz.notfakenews.model.Article
+import com.fizz.notfakenews.model.ArticleLocal
 import com.fizz.notfakenews.overview.OverviewViewModel
 
-const val TAG="EntertainFragment"
+private const val TAGE="EntertainFragment"
 class EntertainmentHomeFragment : Fragment() {
 
     private var _binding: FragmentEntertainmentHomeBinding? = null
@@ -32,14 +33,14 @@ class EntertainmentHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG,"View Create Fragment")
+        Log.d(TAGE,"View Create Fragment")
 
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
         viewModel.newsData.observe(viewLifecycleOwner){
-            Log.d(TAG,"Currently I am in $TAG and inside news data observer")
+            Log.d(TAGE,"Currently I am in $TAGE and inside news data observer")
             binding.recyclerView.adapter=
-                NotNewsAdapter(requireContext(),viewModel,it as ArrayList<Article>)
+                NotNewsAdapter(requireContext(),viewModel,it as ArrayList<ArticleLocal>)
         }
     }
 

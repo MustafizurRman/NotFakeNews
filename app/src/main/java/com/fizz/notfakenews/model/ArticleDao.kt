@@ -7,13 +7,22 @@ import androidx.room.*
 interface ArticleDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertArticle(article: ArticleLocal)
+
     @Query("SELECT * FROM local")
     fun readAllArticle(): LiveData<List<ArticleLocal>>
+
     @Update
     suspend fun updateArticle(article: ArticleLocal)
+
     @Delete
     suspend fun deleteArticle(article: ArticleLocal)
+
     @Query("DELETE FROM local")
     fun deleteAll()
+
+    @Query("UPDATE local SET bookmark = :bookmark WHERE id =:id")
+    fun updateBookmark(bookmark: Boolean?, id: Int)
+
+
 
 }
