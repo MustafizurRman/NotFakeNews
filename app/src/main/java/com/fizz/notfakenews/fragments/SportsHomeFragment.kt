@@ -31,17 +31,16 @@ class SportsHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TechnologyHomeFragment","Currently I am in TechnologyFragment")
+        Log.d("SportsFragment","Currently I am in SportsFragment")
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-
-        viewModel.readSports.observe(viewLifecycleOwner){
-            Log.d("TechnologyHomeFragment","Currently I am in TechnologyFragment and inside news data observer")
+        viewModel.getNewsByCategory("sports").observe(viewLifecycleOwner){
+            val recyclerViewState = binding.recyclerView.layoutManager?.onSaveInstanceState()
+            // Restore state
+            binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
             val adapter = NotNewsAdapter(requireContext(),viewModel)
-            //adapter.setDataset(it)
+            adapter.setDataset(it)
             binding.recyclerView.adapter = adapter
         }
     }
-
-
 }

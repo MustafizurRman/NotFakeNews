@@ -13,7 +13,6 @@ import com.fizz.notfakenews.databinding.FragmentSavedBinding
 import com.fizz.notfakenews.model.ArticleLocal
 import com.fizz.notfakenews.overview.OverviewViewModel
 
-const val TAG="SavedFragment"
 class SavedFragment : Fragment() {
 
     private var _binding: FragmentSavedBinding? = null
@@ -30,14 +29,18 @@ class SavedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG,"View Create Fragment")
 
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        viewModel.readAllNews.observe(viewLifecycleOwner){
-            Log.d(TAG,"Currently I am in $TAG and inside news data observer")
-            binding.recyclerView.adapter=
-                NotNewsAdapter(requireContext(),viewModel)
+        viewModel.readBookmarks().observe(viewLifecycleOwner){
+            Log.d("Saved","Currently I am in Saved and inside news data observer")
+            // Save state
+            val recyclerViewState = binding.recyclerView.layoutManager?.onSaveInstanceState()
+            // Restore state
+            binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+            val adapter = NotNewsAdapter(requireContext(),viewModel)
+            adapter.setDataset(it)
+            binding.recyclerView.adapter = adapter
         }
     }
 

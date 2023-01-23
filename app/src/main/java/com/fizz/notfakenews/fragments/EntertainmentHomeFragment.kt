@@ -36,10 +36,17 @@ class EntertainmentHomeFragment : Fragment() {
 
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        viewModel.readAllNews.observe(viewLifecycleOwner){
-            Log.d(TAGE,"Currently I am in $TAGE and inside news data observer")
-            binding.recyclerView.adapter=
-                NotNewsAdapter(requireContext(),viewModel)
+
+        viewModel.getNewsByCategory("entertainment").observe(viewLifecycleOwner){
+            Log.d("SportsFragment","Currently I am in SportsFragment and inside news data observer")
+            val recyclerViewState = binding.recyclerView.layoutManager?.onSaveInstanceState()
+            // Restore state
+            binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+            val adapter = NotNewsAdapter(requireContext(),viewModel)
+            adapter.setDataset(it)
+            binding.recyclerView.adapter = adapter
+            adapter.setDataset(it)
+            binding.recyclerView.adapter = adapter
         }
     }
 

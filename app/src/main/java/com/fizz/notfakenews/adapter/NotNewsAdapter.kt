@@ -1,22 +1,22 @@
 package com.fizz.notfakenews.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fizz.notfakenews.R
 import com.fizz.notfakenews.model.ArticleLocal
 import com.fizz.notfakenews.overview.OverviewViewModel
+import com.fizz.notfakenews.util.Constraints
 
 private const val TAG="Not a News Adapter"
 class NotNewsAdapter(val context: Context,val viewModel: OverviewViewModel):RecyclerView.Adapter<NotNewsAdapter.NewsViewHolder>() {
@@ -30,6 +30,7 @@ class NotNewsAdapter(val context: Context,val viewModel: OverviewViewModel):Recy
         val thumbnail: ImageView =view.findViewById(R.id.thumbnail)
         val bookmark:ImageView=view.findViewById(R.id.bookmark)
         val card: CardView =view.findViewById(R.id.card_view)
+        val published:TextView=view.findViewById(R.id.time)
     }
 
     private val differCallBack=object:DiffUtil.ItemCallback<ArticleLocal>(){
@@ -42,7 +43,7 @@ class NotNewsAdapter(val context: Context,val viewModel: OverviewViewModel):Recy
         }
     }
 
-    val differ=AsyncListDiffer(this,differCallBack)
+    //val differ=AsyncListDiffer(this,differCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val layout=LayoutInflater.from(parent.context).inflate(R.layout.fake_news_card,parent,false)
@@ -52,11 +53,12 @@ class NotNewsAdapter(val context: Context,val viewModel: OverviewViewModel):Recy
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         Log.d("NoT News Adapter","Currently I am in not news adapter")
-        val newsItem=differ.currentList[position]
+        val newsItem=allNews[position]
         holder.newsAuthor.text=newsItem.author
         holder.newsDetail.text=newsItem.description
         holder.newsTitle.text=newsItem.title
         Glide.with(context).load(newsItem.urlToImage).error(R.drawable.ic_baseline_broken_image_24).into(holder.thumbnail)
+        holder.published.hint=Constraints.DateToTimeFormat(newsItem.publishedAt)
 
         //Adding bookmark screen
         if(newsItem.bookmark == true) holder.bookmark.setImageResource(R.drawable.ic_baseline_bookmark_24)
@@ -65,27 +67,32 @@ class NotNewsAdapter(val context: Context,val viewModel: OverviewViewModel):Recy
         holder.bookmark.setOnClickListener {
             when(newsItem.bookmark){
                 true -> {holder.bookmark.setImageResource(R.drawable.ic_baseline_bookmark_add_24)
-                viewModel.updateBookmark(false,position)
-                    Toast.makeText(context, "Hello Javatpoint", Toast.LENGTH_SHORT).show()
+                viewModel.updateBookmark(false,newsItem.id)
                 }
                 else-> {holder.bookmark.setImageResource(R.drawable.ic_baseline_bookmark_24)
-                viewModel.updateBookmark(true,position)}
+                viewModel.updateBookmark(true,newsItem.id)}
             }
         }
 
-        setOnItemClickListener {
-            onItemClickListener?.let { it(newsItem) }
+        holder.card.setOnClickListener {
+            val bundle=Bundle()
+            bundle.putParcelable("hello",newsItem)
+            holder.card.findNavController().navigate(R.id.detailviewFragment, bundle)
         }
 
     }
 
-    private var onItemClickListener:((ArticleLocal)->Unit)?=null
+/*    private var onItemClickListener:((ArticleLocal)->Unit)?=null
 
     fun setOnItemClickListener(listener:(ArticleLocal)->Unit){
         onItemClickListener=listener
-    }
+    }*/
 
     override fun getItemCount(): Int {
-        return differ.currentList.size
+        return allNews.size
+    }
+
+    fun setDataset(newsItem: List<ArticleLocal>){
+        allNews = newsItem
     }
 }

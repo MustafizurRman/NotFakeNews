@@ -31,22 +31,21 @@ class TechnologyHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TechnologyHomeFragment","Currently I am in TechnologyFragment")
+        Log.d("TAG", "onViewCreated ")
         binding.recyclerView.layoutManager=LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
 
-        viewModel.readAllNews.observe(viewLifecycleOwner){
-            Log.d("TechnologyHomeFragment","Currently I am in TechnologyFragment and inside news data observer")
+
+        viewModel.getNewsByCategory("technology").observe(viewLifecycleOwner){
+            Log.d("TechnologyFragment","Currently I am in technology and inside news data observer")
+            // Save state
+            val recyclerViewState = binding.recyclerView.layoutManager?.onSaveInstanceState()
+            // Restore state
+            binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
             val adapter = NotNewsAdapter(requireContext(),viewModel)
-            //adapter.setDataset(it)
+            adapter.setDataset(it)
             binding.recyclerView.adapter = adapter
         }
-    }
-
-    fun checkNetwork(context: Context):Boolean{
-        val connectivityManager=activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network=connectivityManager.activeNetworkInfo
-        return network!=null && network.isConnected
     }
 
 }

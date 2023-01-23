@@ -1,9 +1,13 @@
 package com.fizz.notfakenews.model
 
+import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "Local")
+@Parcelize
+@Entity(tableName = "Local",indices = [Index(value = ["url"], unique = true)])
 data class ArticleLocal(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
@@ -16,4 +20,4 @@ data class ArticleLocal(
     val bookmark:Boolean?,
     val url: String?,
     val urlToImage: String?
-)
+):Parcelable

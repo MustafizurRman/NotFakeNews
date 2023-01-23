@@ -32,10 +32,14 @@ class BusinessHomeFragment : Fragment() {
         Log.d("BusinessHomeFragment","Currently I am in BusinessFragment")
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        viewModel.readAllNews.observe(viewLifecycleOwner){
-            Log.d("BusinessHomeFragment","Currently I am in BusinessFragment and inside news data observer")
-            binding.recyclerView.adapter=
-                NotNewsAdapter(requireContext(),viewModel)
+
+        viewModel.getNewsByCategory("business").observe(viewLifecycleOwner){
+            val recyclerViewState = binding.recyclerView.layoutManager?.onSaveInstanceState()
+            // Restore state
+            binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+            val adapter = NotNewsAdapter(requireContext(),viewModel)
+            adapter.setDataset(it)
+            binding.recyclerView.adapter = adapter
         }
     }
 

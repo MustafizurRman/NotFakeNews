@@ -6,14 +6,16 @@ buildscript {
     versions.targetSdk = 30
     versions.kotlin = '1.6.10'
     versions.work = "2.7.1"
+    versions.nav_version = '2.5.3'
 
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.android.tools.build:gradle:7.4.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.nav_version"
     }
 }
 task clean(type: Delete) {

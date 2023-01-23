@@ -20,47 +20,40 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
 
     private val _newsData = MutableLiveData<List<Article>>()
     val newsData: LiveData<List<Article>> = _newsData
-
-    private val _topNews=MutableLiveData<List<Article>>()
-    val topNews: LiveData<List<Article>> = _topNews
-
-    private val _sports=MutableLiveData<List<Article>>()
-    val sports: LiveData<List<Article>> = _sports
-
     val readAllNews: LiveData<List<ArticleLocal>>
-    val readSports: LiveData<List<ArticleLocal>>
     val repository: ArticleRepository
 
-    val categories = listOf("sports","business","entertainment","general","health","science","technology")
+/*    val categories =
+        listOf("technology")*/
+val categories =
+        listOf("technology", "entertainment", "general", "health", "sports", "science", "business")
 
     init {
         val dao = ArticleDatabase.getDatabase(application).articleDao()
         repository = ArticleRepository(dao)
-        readAllNews=repository.readAllArticle
-        readSports=repository.readSports
-        getNews()
+        readAllNews = repository.readAllArticle
     }
 
-    fun getNews(){
+    fun getNews() {
         viewModelScope.launch {
-            for(category in categories){
+            for (category in categories) {
                 _newsData.value = NewsApi.getAllNews(category).articles
                 Log.d("9999999", "API fetch successful")
-                try{
-                    if(_newsData.value!!.isNotEmpty()){
+                try {
+                    if (_newsData.value!!.isNotEmpty()) {
                         viewModelScope.launch(Dispatchers.IO) {
                             newsData.value?.let { insertLocal(category, it) }
                         }
                     }
-                }catch (e: Exception){
-                    Log.d("ALLLLLLL","Data Ashtese nahhhhhh")
+                } catch (e: Exception) {
+                    Log.d("ALLLLLLL", "Data Ashtese nahhhhhh")
                 }
             }
         }
     }
 
-    fun insertLocal( category: String, newsList: List<Article>){
-        for(news in newsList){
+    fun insertLocal(category: String, newsList: List<Article>) {
+        for (news in newsList) {
             val article = ArticleLocal(
                 0,
                 news.title,
@@ -77,32 +70,34 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun addArticle(article:ArticleLocal){
+    fun addArticle(article: ArticleLocal) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addArticle(article)
         }
     }
-    fun updateArticle(article: ArticleLocal){
+
+    fun updateArticle(article: ArticleLocal) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateArticle(article)
         }
     }
 
-    fun deleteArticle(article: ArticleLocal){
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteArticle(article)
-        }
-    }
-    fun deleteAll(){
+    fun deleteAll() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAll()
         }
     }
 
-    fun updateBookmark(bookmark:Boolean,id:Int){
+    fun updateBookmark(bookmark: Boolean, id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateBookmark(bookmark,id)
+            repository.updateBookmark(bookmark, id)
         }
     }
 
+    fun getNewsByCategory(category: String): LiveData<List<ArticleLocal>> =
+        repository.getNewsByCategory(category)
+
+    fun readBookmarks():LiveData<List<ArticleLocal>>{
+        return repository.readBookmark
+    }
 }

@@ -1,5 +1,6 @@
 package com.fizz.notfakenews.adapter
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -19,11 +20,12 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         return when (position) {
             0 -> TechnologyHomeFragment()
             1 -> EntertainmentHomeFragment()
-            3 -> GeneralHomeFragment()
-            4 -> HealthHomeFragment()
-            5 -> SportsHomeFragment()
-            6 -> ScienceHomeFragment()
-            else -> BusinessHomeFragment()
+            2 -> GeneralHomeFragment()
+            3 -> HealthHomeFragment()
+            4 -> SportsHomeFragment()
+            5 -> ScienceHomeFragment()
+            6 -> BusinessHomeFragment()
+            else -> TechnologyHomeFragment()
         }
     }
 }

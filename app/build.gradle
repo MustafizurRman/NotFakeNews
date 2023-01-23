@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -101,5 +103,8 @@ dependencies {
 
     //logging
     implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
+
+    // PrettyTime
+    implementation 'org.ocpsoft.prettytime:prettytime:5.0.4.Final'
 
 }

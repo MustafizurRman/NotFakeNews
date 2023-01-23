@@ -10,8 +10,8 @@
         android:name="com.fizz.notfakenews.fragments.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_homeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
         <action
             android:id="@+id/action_homeFragment_to_savedFragment"
             app:destination="@id/savedFragment" />
@@ -22,8 +22,8 @@
         android:label="Technology"
         tools:layout="@layout/fragment_technology_home" >
         <action
-            android:id="@+id/action_technologyHomeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_technologyHomeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/businessHomeFragment"
@@ -31,8 +31,8 @@
         android:label="fragment_business_home"
         tools:layout="@layout/fragment_business_home" >
         <action
-            android:id="@+id/action_businessHomeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_businessHomeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/entertainmentHomeFragment"
@@ -40,8 +40,8 @@
         android:label="fragment_entertainment_home"
         tools:layout="@layout/fragment_entertainment_home" >
         <action
-            android:id="@+id/action_entertainmentHomeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_entertainmentHomeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalHomeFragment"
@@ -49,8 +49,8 @@
         android:label="fragment_general_home"
         tools:layout="@layout/fragment_general_home" >
         <action
-            android:id="@+id/action_generalHomeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_generalHomeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/healthHomeFragment"
@@ -58,8 +58,8 @@
         android:label="fragment_health_home"
         tools:layout="@layout/fragment_health_home" >
         <action
-            android:id="@+id/action_healthHomeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_healthHomeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/scienceHomeFragment"
@@ -67,8 +67,8 @@
         android:label="fragment_science_home"
         tools:layout="@layout/fragment_science_home" >
         <action
-            android:id="@+id/action_scienceHomeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_scienceHomeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/sportsHomeFragment"
@@ -76,8 +76,8 @@
         android:label="fragment_sports_home"
         tools:layout="@layout/fragment_sports_home" >
         <action
-            android:id="@+id/action_sportsHomeFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_sportsHomeFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
@@ -85,25 +85,29 @@
         android:label="fragment_saved"
         tools:layout="@layout/fragment_saved" >
         <action
-            android:id="@+id/action_savedFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_savedFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
         <action
             android:id="@+id/action_savedFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/webviewFragment"
-        android:name="com.fizz.notfakenews.fragments.WebviewFragment"
-        android:label="fragment_webview"
-        tools:layout="@layout/fragment_webview" />
+        android:id="@+id/detailviewFragment"
+        android:name="com.fizz.notfakenews.fragments.DetailviewFragment"
+        android:label="fragment_detailview"
+        tools:layout="@layout/fragment_detailview" >
+        <argument
+            android:name="article"
+            app:argType="com.fizz.notfakenews.model.ArticleLocal" />
+    </fragment>
     <fragment
         android:id="@+id/topUSFragment"
         android:name="com.fizz.notfakenews.fragments.TopUSFragment"
         android:label="fragment_top_u_s"
         tools:layout="@layout/fragment_top_u_s" >
         <action
-            android:id="@+id/action_topUSFragment_to_webviewFragment"
-            app:destination="@id/webviewFragment" />
+            android:id="@+id/action_topUSFragment_to_detailviewFragment"
+            app:destination="@id/detailviewFragment" />
     </fragment>
 
 </navigation>
