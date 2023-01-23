@@ -12,8 +12,8 @@ data class ArticleLocal(
     val content: String?,
     val description: String?,
     val publishedAt: String?,
-    val category: String,
-    val bookmark:Boolean,
+    val category: String?,
+    val bookmark:Boolean?,
     val url: String?,
     val urlToImage: String?
 )

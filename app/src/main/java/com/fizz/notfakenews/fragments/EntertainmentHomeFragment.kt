@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fizz.notfakenews.adapter.NotNewsAdapter
 import com.fizz.notfakenews.databinding.FragmentEntertainmentHomeBinding
-import com.fizz.notfakenews.model.Article
 import com.fizz.notfakenews.model.ArticleLocal
 import com.fizz.notfakenews.overview.OverviewViewModel
 
@@ -37,10 +36,10 @@ class EntertainmentHomeFragment : Fragment() {
 
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        viewModel.newsData.observe(viewLifecycleOwner){
+        viewModel.readAllNews.observe(viewLifecycleOwner){
             Log.d(TAGE,"Currently I am in $TAGE and inside news data observer")
             binding.recyclerView.adapter=
-                NotNewsAdapter(requireContext(),viewModel,it as ArrayList<ArticleLocal>)
+                NotNewsAdapter(requireContext(),viewModel)
         }
     }
 

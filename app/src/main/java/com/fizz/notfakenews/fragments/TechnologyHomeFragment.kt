@@ -1,5 +1,7 @@
 package com.fizz.notfakenews.fragments
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fizz.notfakenews.adapter.NotNewsAdapter
 import com.fizz.notfakenews.databinding.FragmentTechnologyHomeBinding
-import com.fizz.notfakenews.model.Article
 import com.fizz.notfakenews.model.ArticleLocal
 import com.fizz.notfakenews.overview.OverviewViewModel
 
@@ -33,9 +34,19 @@ class TechnologyHomeFragment : Fragment() {
         Log.d("TechnologyHomeFragment","Currently I am in TechnologyFragment")
         binding.recyclerView.layoutManager=LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        viewModel.newsData.observe(viewLifecycleOwner){
+
+        viewModel.readAllNews.observe(viewLifecycleOwner){
             Log.d("TechnologyHomeFragment","Currently I am in TechnologyFragment and inside news data observer")
-            binding.recyclerView.adapter=NotNewsAdapter(requireContext(),viewModel,it as ArrayList<ArticleLocal>)
+            val adapter = NotNewsAdapter(requireContext(),viewModel)
+            //adapter.setDataset(it)
+            binding.recyclerView.adapter = adapter
         }
     }
+
+    fun checkNetwork(context: Context):Boolean{
+        val connectivityManager=activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network=connectivityManager.activeNetworkInfo
+        return network!=null && network.isConnected
+    }
+
 }

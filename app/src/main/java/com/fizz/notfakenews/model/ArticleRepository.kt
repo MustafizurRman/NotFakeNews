@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 
 class ArticleRepository(private val articleDao: ArticleDao) {
     val readAllArticle: LiveData<List<ArticleLocal>> = articleDao.readAllArticle()
+    val readSports: LiveData<List<ArticleLocal>> = articleDao.getSports()
 
     suspend fun addArticle(article:ArticleLocal){
         articleDao.insertArticle(article)

@@ -18,10 +18,13 @@ interface ArticleDao {
     suspend fun deleteArticle(article: ArticleLocal)
 
     @Query("DELETE FROM local")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Query("UPDATE local SET bookmark = :bookmark WHERE id =:id")
-    fun updateBookmark(bookmark: Boolean?, id: Int)
+    suspend fun updateBookmark(bookmark: Boolean?, id: Int)
+
+    @Query("SELECT * FROM local WHERE category='spots'")
+    fun getSports():LiveData<List<ArticleLocal>>
 
 
 
