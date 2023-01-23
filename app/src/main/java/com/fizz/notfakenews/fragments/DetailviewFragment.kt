@@ -9,13 +9,22 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.fizz.notfakenews.R
+import com.fizz.notfakenews.model.ArticleLocal
 
 
 class DetailviewFragment : Fragment() {
-    private val args: DetailviewFragmentArgs by navArgs()
+    //private val args: DetailviewFragmentArgs by navArgs()
+
+    private var article: ArticleLocal? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            article = it.getParcelable("hello")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,23 +41,23 @@ class DetailviewFragment : Fragment() {
         val content: TextView = view.findViewById(R.id.newsContent)
         val imageView: ImageView = view.findViewById(R.id.newsImage)
         val continueButton: Button = view.findViewById(R.id.continueButton)
-        if (!TextUtils.isEmpty(args.article.title)) {
-            title.text = args.article.title
+        if (!TextUtils.isEmpty(article?.title)) {
+            title.text = article?.title
         } else {
             title.text = "No Name"
         }
-        if (!TextUtils.isEmpty(args.article.description)) {
-            description.text = args.article.description
+        if (!TextUtils.isEmpty(article?.description)) {
+            description.text = article?.description
         } else {
             description.text = "No Description"
         }
-        if (!TextUtils.isEmpty(args.article.content)) {
-            content.text = args.article.content
+        if (!TextUtils.isEmpty(article?.content)) {
+            content.text = article?.content
         } else {
             content.text = "No Content"
         }
-        if (!TextUtils.isEmpty(args.article.content)) {
-            Glide.with(requireContext()).load(args.article.urlToImage)
+        if (!TextUtils.isEmpty(article?.content)) {
+            Glide.with(requireContext()).load(article?.urlToImage)
                 .error(R.drawable.ic_baseline_broken_image_24).into(imageView)
 
         } else {
