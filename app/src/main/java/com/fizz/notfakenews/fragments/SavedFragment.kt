@@ -16,7 +16,7 @@ import com.fizz.notfakenews.overview.OverviewViewModel
 class SavedFragment : Fragment() {
 
     private var _binding: FragmentSavedBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val viewModel: OverviewViewModel by viewModels()
 
     override fun onCreateView(

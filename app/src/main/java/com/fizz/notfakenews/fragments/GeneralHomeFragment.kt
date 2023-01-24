@@ -18,7 +18,7 @@ import com.fizz.notfakenews.overview.OverviewViewModel
 class GeneralHomeFragment : Fragment() {
 
     private var _binding: FragmentGeneralHomeBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val viewModel: OverviewViewModel by viewModels()
 
     override fun onCreateView(

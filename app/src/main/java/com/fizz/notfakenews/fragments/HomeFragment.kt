@@ -2,9 +2,8 @@ package com.fizz.notfakenews.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fizz.notfakenews.R
@@ -14,14 +13,14 @@ import com.fizz.notfakenews.overview.OverviewViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 val TabArray = arrayOf(
-    "BreakingNews",
-    "General",
-    "Technology",
-    "Entertainment",
-    "Health",
-    "Sports",
-    "Science",
-    "Business"
+    "FixingNews",
+    "Exceptional",
+    "Primitive",
+    "Unimportant",
+    "Sick",
+    "Idleness",
+    "OldSchool",
+    "Unemployment"
 )
 val drawable= arrayOf(
     R.drawable.fake,
@@ -39,6 +38,10 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: OverviewViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

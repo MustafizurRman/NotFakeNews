@@ -11,10 +11,21 @@ class Constraints {
 
     companion object{
          const val BASE_URL = "https://newsapi.org/v2/"
-         const val API_KEY = "6bb86012ffc54085aa50e6fb36c4da43 "
-
+//         const val API_KEY = "6bb86012ffc54085aa50e6fb36c4da43 "
+//
 //         0027b74f478e421f969852269762888b  ed09f40d0f5e4a06b042467f05e5b0e4
-//        const val API_KEY="939b414905ac461db3673c7161e72285"
+        const val API_KEY="939b414905ac461db3673c7161e72285"
+
+        @JvmField
+        val VERBOSE_NOTIFICATION_CHANNEL_NAME: CharSequence =
+            "Verbose WorkManager Notifications"
+        const val VERBOSE_NOTIFICATION_CHANNEL_DESCRIPTION =
+            "Shows notifications whenever work starts"
+
+        @JvmField
+        val NOTIFICATION_TITLE: CharSequence = "Work Manager Demo"
+        const val CHANNEL_ID = "VERBOSE_NOTIFICATION"
+        const val NOTIFICATION_ID = 1
 
         fun checkConnectivity(context: Context):Boolean{
             val connectivityManager= context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -43,15 +54,5 @@ class Constraints {
             val country: String = java.lang.String.valueOf(locale.getCountry())
             return country.lowercase(Locale.getDefault())
         }
-/*
-        const val CATEGORY_TAB_NUMBER = "category_tab_number"
-        const val KEY_URL = "url"
-        const val DEFAULT = "www.google.com"
-        const val BASE_URL = "https://newsapi.org/v2/"
-        //        const val API_KEY = "f21a416b742a4428a7c6ef898b2c1998"
-        const val API_KEY = "6c234acd217141a5b7955326bf8b2804"
-        const val ARTICLE = "article"
-        const val FAVORITE = "favorite"
-        const val CATEGORY = "category"*/
     }
 }

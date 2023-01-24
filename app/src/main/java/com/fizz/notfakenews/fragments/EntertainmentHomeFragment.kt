@@ -17,7 +17,7 @@ private const val TAGE="EntertainFragment"
 class EntertainmentHomeFragment : Fragment() {
 
     private var _binding: FragmentEntertainmentHomeBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val viewModel: OverviewViewModel by viewModels()
 
 

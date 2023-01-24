@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fizz.notfakenews.R
@@ -90,5 +89,20 @@ class NotNewsAdapter(val context: Context, val viewModel: OverviewViewModel) :
 
     fun setDataset(newsItem: List<ArticleLocal>) {
         allNews = newsItem
+    }
+
+/*    fun performSearch(text: String,category:String){
+        val searchResults =  ArrayList<ArticleLocal>()
+        for(article in listFromFragment){
+            if(article.title?.lowercase(Locale.ROOT)?.contains(text.lowercase(Locale.ROOT)) == true)
+            {
+                searchResults.add(article)
+            }
+        }
+        showResults(searchResults)
+    }*/
+
+    fun showResults(searchResults: List<ArticleLocal>){
+        allNews = searchResults
     }
 }

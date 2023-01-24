@@ -17,7 +17,7 @@ import com.fizz.notfakenews.overview.OverviewViewModel
 class TopUSFragment : Fragment() {
 
     private var _binding: FragmentTopUSBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val viewModel: OverviewViewModel by viewModels()
 
     override fun onCreateView(

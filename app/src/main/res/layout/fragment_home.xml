@@ -27,13 +27,14 @@
             app:tabPadding="2dp"
             app:tabIndicatorColor="#2A022C"
             app:tabIndicatorHeight="3.5dp"
-            app:tabSelectedTextColor="#2A022C"
+            app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/white"
             />
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/homeViewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabMode"

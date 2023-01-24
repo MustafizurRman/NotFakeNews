@@ -1,7 +1,5 @@
 package com.fizz.notfakenews.fragments
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,13 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fizz.notfakenews.adapter.NotNewsAdapter
 import com.fizz.notfakenews.databinding.FragmentTechnologyHomeBinding
-import com.fizz.notfakenews.model.ArticleLocal
 import com.fizz.notfakenews.overview.OverviewViewModel
 
 
 class TechnologyHomeFragment : Fragment() {
     private var _binding: FragmentTechnologyHomeBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val viewModel: OverviewViewModel by viewModels()
 
     override fun onCreateView(
