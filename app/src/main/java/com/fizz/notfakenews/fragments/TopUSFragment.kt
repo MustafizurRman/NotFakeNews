@@ -30,12 +30,19 @@ class TopUSFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("SportsFragment","Currently I am in SportsFragment")
+
+        binding.refreshTopUS.setOnRefreshListener {
+            viewModel.deleteAllCategory("")
+            viewModel.getNewsByCategory("")
+            binding.refreshTopUS.isRefreshing = false
+        }
+
+        Log.d("TopNews","Currently I am in TopNews")
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
 
-        viewModel.getNewsByCategory("sports").observe(viewLifecycleOwner){
-            Log.d("SportsFragment","Currently I am in SportsFragment and inside news data observer")
+        viewModel.getNewsByCategory("").observe(viewLifecycleOwner){
+            Log.d("TopNews","Currently I am in TopNews and inside news data observer")
             val recyclerViewState = binding.recyclerView.layoutManager?.onSaveInstanceState()
             // Restore state
             binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)

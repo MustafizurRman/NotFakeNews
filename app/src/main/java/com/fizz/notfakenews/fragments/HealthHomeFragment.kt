@@ -32,6 +32,13 @@ class HealthHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.refreshHealth.setOnRefreshListener {
+            viewModel.deleteAllCategory("health")
+            viewModel.getNewsByCategory("health")
+            binding.refreshHealth.isRefreshing = false
+        }
+
         Log.d("Health","Currently I am in Health")
         Toast.makeText(requireContext(), "Heath", Toast.LENGTH_SHORT).show()
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())

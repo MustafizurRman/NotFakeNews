@@ -34,6 +34,12 @@ class EntertainmentHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAGE,"View Create Fragment")
 
+        binding.refreshEntertainment.setOnRefreshListener {
+            viewModel.deleteAllCategory("entertainment")
+            viewModel.getNewsByCategory("entertainment")
+            binding.refreshEntertainment.isRefreshing = false
+        }
+
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
 

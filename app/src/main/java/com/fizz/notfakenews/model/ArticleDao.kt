@@ -17,8 +17,11 @@ interface ArticleDao {
     @Update
     suspend fun updateArticle(article: ArticleLocal)
 
-    @Query("DELETE FROM local")
+    @Query("DELETE FROM local WHERE bookmark=false")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM local WHERE bookmark=false AND category=:category")
+    suspend fun deleteAllCategory(category: String)
 
     @Query("UPDATE local SET bookmark = :bookmark WHERE id =:id")
     suspend fun updateBookmark(bookmark: Boolean?, id: Int)

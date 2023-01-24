@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_host) as NavHostFragment
         navController = navHostFragment.navController
-        setupActionBarWithNavController(navController)
-
         val bottomNav:BottomNavigationView= findViewById(R.id.bottomNavigationView)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
@@ -42,8 +40,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-
 }

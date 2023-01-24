@@ -30,6 +30,13 @@ class ScienceHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.refreshScience.setOnRefreshListener {
+            viewModel.deleteAllCategory("science")
+            viewModel.getNewsByCategory("science")
+            binding.refreshScience.isRefreshing = false
+        }
+
         Log.d("SportsFragment","Currently I am in SportsFragment")
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)

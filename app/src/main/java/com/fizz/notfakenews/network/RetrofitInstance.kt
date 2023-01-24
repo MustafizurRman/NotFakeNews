@@ -18,7 +18,6 @@ class RetrofitInstance {
             val logging = HttpLoggingInterceptor()
             logging.setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder().addInterceptor(logging).build()
-
             Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(client)

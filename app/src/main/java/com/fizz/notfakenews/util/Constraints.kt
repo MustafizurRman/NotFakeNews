@@ -1,7 +1,6 @@
 package com.fizz.notfakenews.util
 
 import android.content.Context
-import android.icu.util.ULocale.getCountry
 import android.net.ConnectivityManager
 import android.net.ParseException
 import org.ocpsoft.prettytime.PrettyTime
@@ -12,9 +11,9 @@ class Constraints {
 
     companion object{
          const val BASE_URL = "https://newsapi.org/v2/"
-         const val API_KEY = "ed09f40d0f5e4a06b042467f05e5b0e4 "
+         const val API_KEY = "6bb86012ffc54085aa50e6fb36c4da43 "
 
-//         0027b74f478e421f969852269762888b  6bb86012ffc54085aa50e6fb36c4da43
+//         0027b74f478e421f969852269762888b  ed09f40d0f5e4a06b042467f05e5b0e4
 //        const val API_KEY="939b414905ac461db3673c7161e72285"
 
         fun checkConnectivity(context: Context):Boolean{

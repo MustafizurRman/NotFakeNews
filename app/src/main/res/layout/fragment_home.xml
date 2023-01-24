@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,21 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabMode"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="0dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/purple_200"
             android:contentDescription="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabMode="scrollable"
+            app:tabPadding="2dp"
             app:tabIndicatorColor="#2A022C"
             app:tabIndicatorHeight="3.5dp"
             app:tabSelectedTextColor="#2A022C"
-            app:tabTextColor="#618C8F" />
+            app:tabTextColor="@color/white"
+            />
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/homeViewPager"
             android:layout_width="match_parent"
@@ -37,4 +40,4 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

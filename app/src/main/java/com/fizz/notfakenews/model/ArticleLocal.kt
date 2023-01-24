@@ -18,6 +18,7 @@ data class ArticleLocal(
     val publishedAt: String?,
     val category: String?,
     val bookmark:Boolean?,
+    val source:String?,
     val url: String?,
     val urlToImage: String?
 ):Parcelable

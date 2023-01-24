@@ -14,6 +14,10 @@ class ArticleRepository(private val articleDao: ArticleDao) {
         articleDao.deleteAll()
     }
 
+    suspend fun deleteAllCategory(category: String){
+        articleDao.deleteAllCategory(category)
+    }
+
     suspend fun updateBookmark(bookmark:Boolean,id:Int){
         articleDao.updateBookmark(bookmark,id)
     }

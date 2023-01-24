@@ -23,10 +23,19 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
     val readAllNews: LiveData<List<ArticleLocal>>
     val repository: ArticleRepository
 
-/*    val categories =
-        listOf("technology")*/
-val categories =
-        listOf("technology", "entertainment", "general", "health", "sports", "science", "business")
+    /*    val categories =
+            listOf("technology")*/
+    val categories =
+        listOf(
+            "",
+            "general",
+            "technology",
+            "entertainment",
+            "health",
+            "sports",
+            "science",
+            "business"
+        )
 
     init {
         val dao = ArticleDatabase.getDatabase(application).articleDao()
@@ -37,8 +46,11 @@ val categories =
     fun getNews() {
         viewModelScope.launch {
             for (category in categories) {
-                _newsData.value = NewsApi.getAllNews(category).articles
-                Log.d("9999999", "API fetch successful")
+                if (category == "") {
+                    _newsData.value = NewsApi.getNewsByCountry("us").articles
+                } else {
+                    _newsData.value = NewsApi.getByCategory(category).articles
+                }
                 try {
                     if (_newsData.value!!.isNotEmpty()) {
                         viewModelScope.launch(Dispatchers.IO) {
@@ -46,7 +58,7 @@ val categories =
                         }
                     }
                 } catch (e: Exception) {
-                    Log.d("ALLLLLLL", "Data Ashtese nahhhhhh")
+                    Log.e("OverView", "${e.message}")
                 }
             }
         }
@@ -63,6 +75,7 @@ val categories =
                 news.publishedAt,
                 category,
                 false,
+                news.source.name,
                 news.url,
                 news.urlToImage,
             )
@@ -88,6 +101,12 @@ val categories =
         }
     }
 
+    fun deleteAllCategory(category: String){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAllCategory(category)
+        }
+    }
+
     fun updateBookmark(bookmark: Boolean, id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateBookmark(bookmark, id)
@@ -97,7 +116,7 @@ val categories =
     fun getNewsByCategory(category: String): LiveData<List<ArticleLocal>> =
         repository.getNewsByCategory(category)
 
-    fun readBookmarks():LiveData<List<ArticleLocal>>{
+    fun readBookmarks(): LiveData<List<ArticleLocal>> {
         return repository.readBookmark
     }
 }

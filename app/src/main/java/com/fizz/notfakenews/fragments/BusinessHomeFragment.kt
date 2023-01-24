@@ -29,6 +29,13 @@ class BusinessHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.refreshBusiness.setOnRefreshListener {
+            viewModel.deleteAllCategory("business")
+            viewModel.getNewsByCategory("business")
+            binding.refreshBusiness.isRefreshing = false
+        }
+
         Log.d("BusinessHomeFragment","Currently I am in BusinessFragment")
         binding.recyclerView.layoutManager= LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)

@@ -31,6 +31,12 @@ class TechnologyHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.refreshTechnology.setOnRefreshListener {
+            viewModel.deleteAllCategory("technology")
+            viewModel.getNewsByCategory("technology")
+            binding.refreshTechnology.isRefreshing = false
+        }
         Log.d("TAG", "onViewCreated ")
         binding.recyclerView.layoutManager=LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
