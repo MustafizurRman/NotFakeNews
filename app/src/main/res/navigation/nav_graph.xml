@@ -99,6 +99,9 @@
         <argument
             android:name="article"
             app:argType="com.fizz.notfakenews.model.ArticleLocal" />
+        <action
+            android:id="@+id/action_detailviewFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/topUSFragment"
@@ -108,6 +111,15 @@
         <action
             android:id="@+id/action_topUSFragment_to_detailviewFragment"
             app:destination="@id/detailviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.fizz.notfakenews.fragments.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" >
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 
 </navigation>

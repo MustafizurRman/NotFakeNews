@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.fizz.notfakenews.R
 import com.fizz.notfakenews.model.ArticleLocal
@@ -64,17 +65,9 @@ class DetailviewFragment : Fragment() {
             Glide.with(requireContext()).load(R.drawable.ic_baseline_broken_image_24)
         }
         continueButton.setOnClickListener {
-/*            if (!TextUtils.isEmpty(args.article.url)) {
-                val action =
-                    args.article.url?.let { it1 ->
-                        DetailedNewsFragmentDirections.actionDetailedNewsFragmentToWebViewFragment(
-                            it1
-                        )
-                    }
-                if (action != null) {
-                    Navigation.findNavController(view).navigate(action)
-                }
-            }*/
+            val bundle=Bundle()
+            bundle.putString("url",article!!.url)
+            view.findNavController().navigate(R.id.webViewFragment,bundle)
         }
     }
 
